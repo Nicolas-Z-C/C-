@@ -52,7 +52,7 @@
             Song song2 = new Song("Title2", "Me2", 10);
             Console.WriteLine(Song.songcount);
             song2.getsSongCount();
-            */
+            
 
             //static methods and classes
 
@@ -65,7 +65,47 @@
 
             chef1.MakeRice();
             chef.MakeRice();
+            
 
+            //Abstract keyword
+
+            Plane plan1 = new Plane();
+            Car car1 = new Car();
+            //error pues se tiene abstract
+            //Vehicule vehicule1 = new Vehicule();
+            
+
+            //Arrays of objects
+
+            //Se crea el array de objetos, este solo puede contener objetos de la clase designada
+            Kart[] garage = new Kart[5];
+
+            Kart kart1 = new Kart("Red");
+            Kart kart2 = new Kart("Blue");
+            Kart kart3 = new Kart("Grey");
+
+            foreach(Kart kart in garage)
+            {
+                Console.WriteLine(kart.color);
+            }
+
+            //Creacion con objetos anonimos
+
+            Kart [] karts = { new Kart("Red"), new Kart("Blue"), new Kart("Grey"),};
+            */
+
+
+            //Objects as arguments
+
+            Car2 Carrito = new Car2();
+
+            Console.WriteLine(Carrito.color);
+
+            Car2.changecolor(Carrito, "Red");
+
+            Console.WriteLine(Carrito.color);
+
+            Car2 car2 = Car2.copy(Carrito);
         }
     }
 }
