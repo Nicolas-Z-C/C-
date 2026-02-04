@@ -92,7 +92,7 @@
             //Creacion con objetos anonimos
 
             Kart [] karts = { new Kart("Red"), new Kart("Blue"), new Kart("Grey"),};
-            */
+            
 
 
             //Objects as arguments
@@ -106,6 +106,43 @@
             Console.WriteLine(Carrito.color);
 
             Car2 car2 = Car2.copy(Carrito);
+
+            
+
+            //ToString
+
+            //Nos sirve para poder mostrar algo diferente a la hora de usar el metodo por medio de el sebreescribir su codio original.
+
+            Tostring papaya = new Tostring("Chevy","2007",2005,"Red");
+            Console.WriteLine(papaya.ToString());
+            Console.WriteLine(papaya);
+            */
+
+            //Polymorphism
+            //Tener muchas formas y tipos de datos 
+
+            Carrito carrito1 = new Carrito();
+            Motico motico = new Motico();
+            Avioncito avioncito = new Avioncito(); 
+
+            //Si quisieramos crear un array con nuestros objetos tendriamos que usar la clase padre o la que tengan en comun nuestros objetos
+            //En este caso seria Vehicules 
+
+            Carrito [] garaje = new Carrito[10];
+
+            //garaje[1] = motico; //Nos da un error pues no se puede insertar un tipo en otro
+
+            Vehicules [] garage = {motico, carrito1,avioncito}; //Gracias al poly se puede lograr esto
+
+            foreach(Vehicules vehicules in garage)
+            {
+                //Solo funciona si nuestra clase padre tiene el metodo que se esta llamando, pero al poder ser sobreescrito actuara segun lo que este en su sub clase
+                vehicules.go();
+            }
+
+            //Asi mismo podemos crear objetos de carro y tratarlos como vehiculos
+
+            Vehicules carrito2 = new Carrito(); //Valido gracias a la herencia y poli
         }
     }
 }
