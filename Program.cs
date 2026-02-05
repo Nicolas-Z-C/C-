@@ -116,7 +116,7 @@
             Tostring papaya = new Tostring("Chevy","2007",2005,"Red");
             Console.WriteLine(papaya.ToString());
             Console.WriteLine(papaya);
-            */
+            
 
             //Polymorphism
             //Tener muchas formas y tipos de datos 
@@ -143,6 +143,72 @@
             //Asi mismo podemos crear objetos de carro y tratarlos como vehiculos
 
             Vehicules carrito2 = new Carrito(); //Valido gracias a la herencia y poli
+
+            
+
+            //Interfaces
+
+            Rabbit rabbit = new Rabbit();
+
+            rabbit.flee();
+
+            Hawk hawk = new Hawk();
+
+            hawk.searchForPrey();
+
+            //A diferencia de las clases normales las interfaces permiten la herencia multiple
+
+            Fish fish = new Fish();
+
+            fish.searchForPrey();
+            fish.flee();
+            
+
+            //Listas
+
+            //Las listas son arrays con esteroides, pueden almacenar datos complejos y tambien crecer o reducir su tamaño
+
+            List<string> Lista1 = new List<string>();
+            //Para agregar un indice usamos el .Add
+
+            Lista1.Add("Papa");
+            Lista1.Add("Pizza");
+            Lista1.Add("Perro");
+
+            foreach(string str in Lista1)
+            {
+                Console.WriteLine(str);
+            }
+
+            Lista1.Remove("Pizza");
+
+            foreach (string str in Lista1)
+            {
+                Console.WriteLine(str);
+            }
+            
+            Lista1.Insert(0,"Pedro");
+
+            Lista1.Count();
+            Lista1.IndexOf("Papa");
+            Lista1.LastIndexOf("Papa");
+            Lista1.Contains("Papa");
+            List<Vehicules> garage1 = new List<Vehicules>();
+
+            Carrito carrito = new Carrito();
+
+            Avioncito avioncito = new Avioncito();
+
+            garage1.Add(avioncito);
+            garage1.Add(carrito);
+
+            Console.WriteLine(garage1[0] +" "+ garage1[1]); //Para verlos podemos cambiar el ToString o acceder a las propiedades que queramos
+            */
+
+            //Auto-Implemented properties 
+
+            
+
         }
     }
 }
