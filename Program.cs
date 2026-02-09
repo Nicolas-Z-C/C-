@@ -203,11 +203,26 @@
             garage1.Add(carrito);
 
             Console.WriteLine(garage1[0] +" "+ garage1[1]); //Para verlos podemos cambiar el ToString o acceder a las propiedades que queramos
-            */
+            
 
             //Auto-Implemented properties 
 
-            
+            //Enums 
+
+            Console.WriteLine(Planets.Mercury);
+            Console.WriteLine(Planets.Mercury +" Is the planet #"+ (int)Planets.Mercury);
+
+            */
+
+            //Generics
+
+            int[] intArray = {0,1,2,3};
+            double[] doubleArray = {0,1,2,3};
+            string[] stringArray = {"Pa","Pe","Pi","Po"};
+
+            Generics.displayElements(intArray);
+            Generics.displayElements(doubleArray);
+            Generics.displayElements(stringArray);
 
         }
     }
