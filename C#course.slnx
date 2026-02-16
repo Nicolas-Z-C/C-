@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Metodos/">
+    <File Path="01C#.cs" />
+  </Folder>
+  <Project Path="C#course.csproj" />
+</Solution>
