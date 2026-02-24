@@ -212,7 +212,7 @@
             Console.WriteLine(Planets.Mercury);
             Console.WriteLine(Planets.Mercury +" Is the planet #"+ (int)Planets.Mercury);
 
-            */
+            
 
             //Generics
 
@@ -224,6 +224,140 @@
             Generics.displayElements(doubleArray);
             Generics.displayElements(stringArray);
 
-        }
+            
+
+            //Diccionarios
+
+            Dictionary<int,string> PAPASLOCAS = new Dictionary<int,string>();
+            PAPASLOCAS.Add(1,"Papoi");
+            PAPASLOCAS[2] = "papitas";
+            PAPASLOCAS.ContainsKey(2);
+            PAPASLOCAS.Remove(1);
+
+           
+
+
+            //Hashsets
+
+            HashSet<int> Notas = new HashSet<int> {1,2,3};
+            
+            Notas.Add(1);
+            Notas.Remove(1);
+            
+
+
+             
+
+
+            //LinkedLists
+
+            LinkedList<int> ints = new LinkedList<int>();
+            
+            ints.AddFirst(1);
+            ints.AddLast(2);
+            ints.AddAfter(1,45);
+            ints.AddBefore(2,80);
+
+
+            */
+
+
+            //LINQ
+
+            List<Game> games1 = new List<Game>();
+
+            var games = new List<Game>
+            {
+              new Game {Title = "Game1", Genre = "Adventre" , Rating = 9.5, ReleaseYear = 1988},
+              new Game {Title = "Game2", Genre = "FPS" , Rating = 8.0, ReleaseYear = 1987},
+              new Game {Title = "Game3", Genre = "FPS" , Rating = 9.0, ReleaseYear = 1986},
+              new Game {Title = "Game4", Genre = "SCIFI" , Rating = 2.0, ReleaseYear = 1985}  
+            };
+
+            var AllTitles = games.Select(game => game.Title); //Usamos el select para seleccionar solo el titulo de cada uno, nos ahorramos un foreach
+
+            var AllGenres = games.Where(g => g.Genre == "SOLO");
+
+            var ModernGames = games.Any( g => g.ReleaseYear >= 1987);
+
+            var OrganizedGames = games.OrderBy(g => g.ReleaseYear);
+
+            var AvgGames = games.Average(g => g.ReleaseYear);
+
+            var OrgByGenre = games.GroupBy(g => g.Genre);
+
+            var GOTY = games
+            .Where(g => g.Rating >= 9)
+            .OrderBy(g => g.ReleaseYear)
+            .Select(g => $"{g.Title} - {g.ReleaseYear}");
+
+            var page1 = games 
+            .Skip(2)
+            .Take(2)
+            .Where(g => g.Rating > 1);
+
+            //SQL sintax
+
+            var FF = games
+            .Where(g => g.Genre == "FPS")
+            .OrderBy(g => g.Rating);
+
+            var F1 = from game in games 
+                     where game.Genre == "FPS"
+                     orderby game.Rating
+                     select game;
+
+            foreach (var Title in AllTitles)
+            {
+                Console.WriteLine(Title);
+            }
+
+            foreach (var Genre in AllGenres)
+            {
+                Console.WriteLine(Genre.Title);
+            }
+
+            if (ModernGames)
+            {
+                Console.WriteLine(ModernGames);
+            }
+            
+            foreach (var Release in OrganizedGames)
+            {
+                Console.WriteLine($"{Release.Title}  {Release.ReleaseYear}");
+            }
+
+            Console.WriteLine(AvgGames);
+
+            foreach (var group in OrgByGenre)
+            {
+                Console.WriteLine($"Genre: {group.Key}");
+
+                foreach (var game in group)
+                {
+                    Console.WriteLine(game.Title);
+                }
+            }
+
+            foreach (var game in GOTY)
+            {
+                Console.WriteLine(game);
+            }
+
+            foreach (var game in page1)
+            {
+                Console.WriteLine($"{game.Title} - {game.Rating}");
+            }
+
+            foreach (var game in FF)
+            {
+                Console.WriteLine($"{game.Title} - {game.Rating} - {game.Genre}");
+            }
+
+            foreach (var game in F1)
+            {
+                Console.WriteLine($"{game.Title} - {game.Rating} - {game.Genre}");
+            }
+        } 
     }
 }
