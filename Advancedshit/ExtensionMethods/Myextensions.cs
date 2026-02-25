@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace C_course.Advancedshit.ExtensionMethods
 {
-    public class Myextensions
+    public static class Myextensions
     {
     /*
     Tema bastante interesante, creamos un metodo que extiende las capacidades de la clase, osea

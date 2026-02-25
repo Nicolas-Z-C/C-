@@ -1,4 +1,6 @@
-﻿namespace C_course
+﻿using C_course.Advancedshit.Delegates;
+using C_course.Advancedshit.Events;
+namespace C_course
 {
     internal class Program
     {
@@ -259,7 +261,7 @@
             ints.AddBefore(2,80);
 
 
-            */
+            
 
 
             //LINQ
@@ -357,7 +359,109 @@
             foreach (var game in F1)
             {
                 Console.WriteLine($"{game.Title} - {game.Rating} - {game.Genre}");
+            } 
+            
+
+
+
+            //Delegates
+
+            Delegates.BinaryOp b = new Delegates.BinaryOp(SimpleMath.Add);     
+            //Apunta a Add 
+
+            Console.WriteLine(b(10,15));
+            //ejemplo mas complejo
+            
+            Console.WriteLine("** Delegates as event enablers **\n");
+            // First, make a Car object.
+            CAR c1 = new CAR("SlugBug", 100, 10);
+            // Now, tell the car which method to call
+            // when it wants to send us messages.
+            c1.RegisterWithCarEngine(new CAR.CarEngineHandler(OnCarEngineEvent));
+            //esto se puede simplificar con method group conversion
+            //usando esta tecnica podemos lograr que en vez de pasar una instancia del delegate podamos simplemente registrar con el nombre del methodo
+            c1.RegisterWithCarEngine(OnCarEngineEvent);
+            // Speed up (this will trigger the events).
+            Console.WriteLine("***** Speeding up *****");
+            for (int i = 0; i < 6; i++)
+            {
+            c1.Accelerate(20);
             }
+            Console.ReadLine();
+            // This is the target for incoming events.
+            static void OnCarEngineEvent(string msg)
+            {
+            Console.WriteLine("\n*** Message From Car Object ***");
+            Console.WriteLine("=> {0}", msg);
+            Console.WriteLine("********************\n");
+            }
+
+            
+
+            
+            //generic delegates 
+
+            GenericDelegates.Mygen<string> mygen = GenericDelegates.StrTarget; 
+
+            mygen("papa");
+
+
+
+
+            //Action&Func
+
+            //Action 
+
+            Action<string,int> action = ActionFunc.ConsoleWarn; 
+
+            action("Hola",10);
+
+            //Func 
+
+            Func<int,string> func = ActionFunc.IntAsString;
+            string a = func(15);
+            Console.WriteLine(a);
+
+
+
+            */
+
+            //Events % Anonmeth 
+
+            //Custom events
+
+            Termometro termometro = new Termometro();
+
+            void temp(object sender, TemperaturaArgs args)
+            {
+                Console.WriteLine($"La temperatura es muy alta {args.Temperatura}");
+            } 
+
+            termometro.AlertaTemperatura += temp;
+
+            termometro.CambiarTemperatura(90);
+
+            termometro.CambiarTemperatura(100);
+
+            //anons
+
+            Advancedshit.Anonmethods.Anonmeth anonmeth = new Advancedshit.Anonmethods.Anonmeth();
+
+            int contador = 0;
+            
+            Advancedshit.Anonmethods.Anonmeth.Chefmuerto += delegate (string msg)
+            {
+                contador++;
+                Console.WriteLine(msg);  
+            };
+
+            Advancedshit.Anonmethods.Anonmeth.Chefmuerto += static delegate (string msg)
+            {
+                //contador++;
+                Console.WriteLine(msg);  
+            };
+
+            anonmeth.Chefcocinando(40);
         } 
     }
 }
