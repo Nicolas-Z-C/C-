@@ -1,10 +1,12 @@
 ﻿using C_course.Advancedshit.Delegates;
 using C_course.Advancedshit.Events;
+using C_course.Advancedshit.Multithreading;
+
 namespace C_course
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             /*
             //Classes
@@ -424,7 +426,7 @@ namespace C_course
 
 
 
-            */
+            
 
             //Events % Anonmeth 
 
@@ -432,7 +434,7 @@ namespace C_course
 
             Termometro termometro = new Termometro();
 
-            void temp(object sender, TemperaturaArgs args)
+            void temp(object ?  sender, TemperaturaArgs args)
             {
                 Console.WriteLine($"La temperatura es muy alta {args.Temperatura}");
             } 
@@ -462,6 +464,235 @@ namespace C_course
             };
 
             anonmeth.Chefcocinando(40);
+
+            //Multithreading 2
+
+            AutoResetEvent _waitHandle = new AutoResetEvent(false);
+            
+            void Add(object data)
+            {
+                if (data is AddParams ap)
+                {
+                    Console.WriteLine("ID of thread in Add(): {0}",
+                    Environment.CurrentManagedThreadId);
+                    Console.WriteLine("{0} + {1} is {2}",
+                    ap.a, ap.b, ap.a + ap.b);
+                    _waitHandle.Set();
+                }
+            }
+
+            Console.WriteLine("***** Adding with Thread objects *****");
+            Console.WriteLine("ID of thread in Main(): {0}",
+            Environment.CurrentManagedThreadId);
+            AddParams ap = new AddParams(10, 10);
+            Thread t = new Thread(new ParameterizedThreadStart(Add));
+            t.Start(ap);
+            // Wait here until you are notified!
+            _waitHandle.WaitOne();
+            Console.WriteLine("Other thread is done!");
+            Console.ReadLine();
+
+            //TPL 
+            //Parallel class 
+
+            string[] strings = {"1","2","3"};
+
+            void Printer(string array)
+            {
+                Console.WriteLine(array);
+            }
+
+            Action<string> action = Printer; 
+
+            void Printer2(int i)
+            {
+                Console.WriteLine(strings[i]);
+            }
+
+            Action<int> action1 = Printer2;
+
+            Parallel.ForEach(strings, action);
+            Parallel.For(0,strings.Length, action1);
+
+            Parallel.For(0, strings.Length, i => Console.WriteLine(strings[i]));
+            Parallel.ForEach(strings, i => Console.WriteLine(i));
+
+            //Task
+            //No interrumpe el main thread
+            Task.Run(()=>
+            {   
+                for(int i = 0; i > 5; ++i)
+                {
+                    Console.WriteLine("mamachimbo");    
+                }  
+            });
+            for(int i = 0; i > 10;i++)
+            {
+                Console.WriteLine("Jeffer");
+            }
+
+            Task task = new Task(() =>
+            {
+                Console.WriteLine("Tomas");
+            });
+
+            for(int i = 0; i > 2; i++)
+            {
+                task.Start();
+            }
+
+            Task.Factory.StartNew(
+                () => Console.WriteLine("tomas es gay"), // ¿Qué ejecutar?
+                CancellationToken.None,        // ¿Cancelable?
+                TaskCreationOptions.LongRunning, // ¿Cuánto dura?
+                TaskScheduler.Default          // ¿Dónde ejecutar?
+            );
+
+            //Parallel invoke
+
+            void Suma(int a,int b)
+            {
+                Console.WriteLine(a+b);
+            }
+            void Hola()
+            {
+                Console.WriteLine("hola");
+            }
+            Action<int,int> action2 = Suma;
+            Action actioner = Hola;
+            Parallel.Invoke( 
+                () => Console.WriteLine("Metodo1"),
+                () => Console.WriteLine("Metodo2"),
+                () => action2(1,2),
+                actioner
+            );
+
+            Action[] actions =
+            {
+                () => Console.WriteLine("Metodo array"),
+                () => Console.WriteLine("Metodo array 2"),
+                actioner,
+            };
+            Parallel.Invoke(actions);
+
+            // -------------------------------------------------------
+            // CANCELLATION TOKEN - Caso 1: Verificacion manual
+            // -------------------------------------------------------
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+
+            Task tareaLarga = Task.Run(() =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    // Verificamos en cada iteracion si fue cancelada
+                    if (token.IsCancellationRequested)
+                    {
+                        Console.WriteLine("¡Tarea cancelada! (Verificacion manual)");
+                        return;
+                    }
+                    Console.WriteLine($"Trabajando... paso {i}");
+                    Thread.Sleep(500);
+                }
+            }, token);
+
+            Thread.Sleep(1000);
+            cts.Cancel();
+
+            // -------------------------------------------------------
+            // CANCELLATION TOKEN - Caso 2: ThrowIfCancellationRequested
+            // Lanza excepcion automaticamente al cancelar
+            // -------------------------------------------------------
+            CancellationTokenSource cts2 = new CancellationTokenSource();
+
+            Task tareaExcepcion = Task.Run(() =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    // Lanza OperationCanceledException automaticamente
+                    cts2.Token.ThrowIfCancellationRequested();
+                    Console.WriteLine($"Caso 2 - paso {i}");
+                    Thread.Sleep(500);
+                }
+            }, cts2.Token);
+
+            Thread.Sleep(1000);
+            cts2.Cancel();
+
+            // Capturamos la excepcion de cancelacion
+            try
+            {
+                tareaExcepcion.Wait();
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var e in ae.InnerExceptions)
+                    Console.WriteLine($"Excepcion capturada: {e.Message}");
+            }
+
+            // -------------------------------------------------------
+            // CANCELLATION TOKEN - Caso 3: Timeout automatico
+            // Se cancela solo despues de X milisegundos
+            // -------------------------------------------------------
+            CancellationTokenSource cts3 = new CancellationTokenSource(1500); // cancela en 1.5 segundos
+
+            Task tareaTiempo = Task.Run(() =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    if (cts3.Token.IsCancellationRequested)
+                    {
+                        Console.WriteLine("Caso 3 - Cancelado por timeout!");
+                        return;
+                    }
+                    Console.WriteLine($"Caso 3 - paso {i}");
+                    Thread.Sleep(500);
+                }
+            }, cts3.Token);
+
+            tareaTiempo.Wait();
+
+            //Plinq 
+
+            List<int> ints = new List<int> {1,2,3,4,5,6,7,8,9,5,4,8,7,5,0,1,0,10};
+
+            CancellationTokenSource tokener = new CancellationTokenSource();
+            CancellationToken token1 = tokener.Token;
+
+            var pares = from i in ints
+                        .AsParallel()
+                        .WithCancellation(token1)
+                        where i/2 == 0
+                        select i;
+
+            Thread.Sleep(2);
+            tokener.Cancel();
+
+            foreach (var item in pares)
+            {
+                Console.WriteLine(item);
+            }
+            */
+            //Async/Await
+
+            async Task task(string name)
+            {
+                 await Task.Run(() =>
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Console.WriteLine("Hola"+name);
+                    }
+                });
+            }
+
+            await task("pepe");
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Hola");
+            }
+
         } 
     }
 }
