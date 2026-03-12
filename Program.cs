@@ -1,7 +1,7 @@
 ﻿using C_course.Advancedshit.Delegates;
 using C_course.Advancedshit.Events;
 using C_course.Advancedshit.Multithreading;
-
+using System.IO;
 namespace C_course
 {
     internal class Program
@@ -672,7 +672,7 @@ namespace C_course
             {
                 Console.WriteLine(item);
             }
-            */
+            
             //Async/Await
 
             async Task task(string name)
@@ -693,6 +693,27 @@ namespace C_course
                 Console.WriteLine("Hola");
             }
 
-        } 
+            */
+
+            //File I/O y serializacion de objetos
+            
+            DirectoryInfo info = new DirectoryInfo(@"C:\File IO & serialization");
+            //Uso en otras plataformas no windows
+            DirectoryInfo dir3 = new DirectoryInfo($@"C{Path.VolumeSeparatorChar}{Path.DirectorySeparatorChar}File IO & serialization");
+
+            info.Create(); //crear directorios
+
+            Directory.CreateDirectory(@"C:\File IO & serialization");
+
+            FileInfo info1 = new FileInfo($@"C{Path.VolumeSeparatorChar}{Path.DirectorySeparatorChar}File IO & serialization{Path.DirectorySeparatorChar}Archivo1");
+
+            info1.Create();
+            info1.CreateText();
+            info1.Open(FileMode.Open);
+
+            //ADO.NET
+
+            
+        }
     }
 }
