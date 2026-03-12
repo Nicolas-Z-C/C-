@@ -1,6 +1,14 @@
-﻿using C_course.Advancedshit.Delegates;
+﻿global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using System.Xml;
+global using System.Xml.Serialization;
+using C_course.Advancedshit.Delegates;
 using C_course.Advancedshit.Events;
 using C_course.Advancedshit.Multithreading;
+<<<<<<< Updated upstream
+=======
+using C_course.File IO & serialization
+>>>>>>> Stashed changes
 using System.IO;
 namespace C_course
 {
@@ -686,13 +694,14 @@ namespace C_course
                 });
             }
 
-            await task("pepe");
+            await    task("pepe");
 
             for (int i = 0; i < 10; i++)
             {
                 Console.WriteLine("Hola");
             }
 
+<<<<<<< Updated upstream
             */
 
             //File I/O y serializacion de objetos
@@ -715,5 +724,75 @@ namespace C_course
 
             
         }
+=======
+            //I/O and ADO.NET
+
+            //DirectoryInfo
+
+            DirectoryInfo info1 = new DirectoryInfo("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization");
+
+            info1.Create();
+
+            var[] files = info1.GetFiles();
+
+            for (int i = 0; i < files.length(); i++)
+            {
+                Console.WriteLine(files[i])
+            }
+            
+            //Directory
+
+            Directory.Create("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization");
+
+            //FileInfo
+
+            FileInfo info2 = new FileInfo("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Archivo1.txt");
+            
+
+
+            
+            //Streams
+
+            //StreamWriters 
+
+            Console.WriteLine("***Stream Writers***");
+
+            using (StreamWriter writer = File.CreateText("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Archivo1.txt"))
+            {
+                writer.WriteLine("Bigus dickus");
+                for (int i = 0; i < 10; i++)
+                {
+                    writer.Write($"i : {i}");
+                }
+            }
+
+            //StreamReaders
+
+            Console.WriteLine("Aca esta el interior del archivo");
+
+            using (StreamReader reader = File.OpenText("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Archivo1.txt"))
+            {
+                string input; 
+                while (input = reader.ReadLine() != null)
+                {
+                    Console.WriteLine(input);
+                }
+            }
+
+            */
+
+            //Object serialization 
+
+            Persona persona1 = new Persona
+            {
+                Nombre = "Alberto",
+                Vivo = true;
+            }
+
+            SaveAsXML(persona1, "C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Persona1");
+
+            Persona persona2 = ReadXML("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Persona1");
+        } 
+>>>>>>> Stashed changes
     }
 }
