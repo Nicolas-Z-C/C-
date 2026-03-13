@@ -5,11 +5,9 @@ global using System.Xml.Serialization;
 using C_course.Advancedshit.Delegates;
 using C_course.Advancedshit.Events;
 using C_course.Advancedshit.Multithreading;
-<<<<<<< Updated upstream
-=======
-using C_course.File IO & serialization
->>>>>>> Stashed changes
+using C_course.FileIOserialization;
 using System.IO;
+using Microsoft.Data.SqlClient;
 namespace C_course
 {
     internal class Program
@@ -701,8 +699,7 @@ namespace C_course
                 Console.WriteLine("Hola");
             }
 
-<<<<<<< Updated upstream
-            */
+
 
             //File I/O y serializacion de objetos
             
@@ -720,20 +717,13 @@ namespace C_course
             info1.CreateText();
             info1.Open(FileMode.Open);
 
-            //ADO.NET
-
-            
-        }
-=======
-            //I/O and ADO.NET
-
             //DirectoryInfo
 
-            DirectoryInfo info1 = new DirectoryInfo("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization");
+            DirectoryInfo info1s = new DirectoryInfo("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization");
 
             info1.Create();
 
-            var[] files = info1.GetFiles();
+            var[] files = info1s.GetFiles();
 
             for (int i = 0; i < files.length(); i++)
             {
@@ -779,7 +769,6 @@ namespace C_course
                 }
             }
 
-            */
 
             //Object serialization 
 
@@ -792,7 +781,43 @@ namespace C_course
             SaveAsXML(persona1, "C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Persona1");
 
             Persona persona2 = ReadXML("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Persona1");
+            
+
+            */
+
+            //ADO.NET 
+
+            //Connection Objects
+
+            Console.WriteLine("Connection objects");
+
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = 
+                @"Data Source=.,5433;User Id=sa;Password=P@ssw0rd;Initial Catalog=AutoLot;Encrypt=False;";
+                /*data source = ip + puesrto; user id = Usuario de la base de datos; Password = contrasena; Initial Catalog = Nombre de la base de datos; Encrypt = Usar o no SSL*/
+                connection.Open();
+                //Abre la conexion
+                string sql = 
+                @"Select Id bla bla bla sql";
+                //Codigo sql basicamente
+                SqlCommand command = new SqlCommand(sql,connection);
+                //Crea el comando, por ende toma el sql como parametro (Query) y la conexion a la db
+                using (SqlDataReader dataReader = command.ExecuteReader())
+                //Data reader para ejecutar el reader y traer de vuelta los resultados y leerlos fila por fila
+                {
+                    while (dataReader.Read())
+                    /*
+                    Se trae fila por fila los datos de la siguiente forma
+                    fila 1 -> Read() -> proceso
+                    fila 2 -> Read() -> proceso
+                    y asi hasta llegar a la ultima fila que resulte de nuestra query
+                    */
+                    {
+                        Console.WriteLine("Aca van los elementos FILA POR FILA ose tengo el contexto de cada fila individual");
+                    }
+                }
+            }
         } 
->>>>>>> Stashed changes
     }
 }
