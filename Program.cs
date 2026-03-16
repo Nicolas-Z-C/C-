@@ -8,6 +8,7 @@ using C_course.Advancedshit.Multithreading;
 using C_course.FileIOserialization;
 using System.IO;
 using Microsoft.Data.SqlClient;
+using Libreria1; 
 namespace C_course
 {
     internal class Program
@@ -739,8 +740,6 @@ namespace C_course
             FileInfo info2 = new FileInfo("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Archivo1.txt");
             
 
-
-            
             //Streams
 
             //StreamWriters 
@@ -783,7 +782,7 @@ namespace C_course
             Persona persona2 = ReadXML("C:\Users\ytraz\OneDrive\Desktop\Repos\C#\File IO & serialization\Persona1");
             
 
-            */
+            
 
             //ADO.NET 
 
@@ -796,28 +795,46 @@ namespace C_course
                 connection.ConnectionString = 
                 @"Data Source=.,5433;User Id=sa;Password=P@ssw0rd;Initial Catalog=AutoLot;Encrypt=False;";
                 /*data source = ip + puesrto; user id = Usuario de la base de datos; Password = contrasena; Initial Catalog = Nombre de la base de datos; Encrypt = Usar o no SSL*/
+                /*
+                Conection String Builder 
+                Podemos lograr lo mismo de arriba por medio de un objeto: 
+                var CSB = new SqlConnectionStringBuilder
+                {
+                Initial Catalog = NombreDB,
+                asi como todo
+                }
+                
                 connection.Open();
                 //Abre la conexion
                 string sql = 
                 @"Select Id bla bla bla sql";
-                //Codigo sql basicamente
+                //Codigo sql basicamente -
                 SqlCommand command = new SqlCommand(sql,connection);
-                //Crea el comando, por ende toma el sql como parametro (Query) y la conexion a la db
+                //Crea el comando, por ende toma el sql (Query o nombre de stored procedure) (A command solo le importa que sea string no como llegue y la conexion a la db
+                //Para uso con stored debemos cambiar su tipo de commando con CommandType y crear un objeto con los parametros o usar .Add asi: 
+                //command.Add(bla bla bla).value = valor
+                //command.Add(objeto)
                 using (SqlDataReader dataReader = command.ExecuteReader())
                 //Data reader para ejecutar el reader y traer de vuelta los resultados y leerlos fila por fila
                 {
                     while (dataReader.Read())
                     /*
+                    Su syntax es [ x ] donde x es el nombre de la columna del dato al que queremos acceder 
                     Se trae fila por fila los datos de la siguiente forma
                     fila 1 -> Read() -> proceso
                     fila 2 -> Read() -> proceso
                     y asi hasta llegar a la ultima fila que resulte de nuestra query
-                    */
+                    
                     {
                         Console.WriteLine("Aca van los elementos FILA POR FILA ose tengo el contexto de cada fila individual");
                     }
                 }
             }
+            */
+            //Class libraries 
+
+
+            Libreria1.Class1.HolaMundo();
         } 
     }
 }
