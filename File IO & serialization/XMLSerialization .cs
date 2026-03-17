@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using 
 namespace C_course.FileIOserialization
 {
     public class XMLSerialization 
@@ -12,7 +11,7 @@ namespace C_course.FileIOserialization
             XmlSerializer xmlFormat = new XmlSerializer(typeof(T));
             using (Stream fStream = new FileStream(FileName, FileMode.Create, FileAccess.Write,FileShare.None))
             {
-                xmlFormat.Serialize(fSteam, Obj);
+                xmlFormat.Serialize(fStream, Obj);
             }
         }
 
@@ -22,7 +21,7 @@ namespace C_course.FileIOserialization
             using (Stream Fstream = new FileStream(FileName,FileMode.Open))
             {
                 T obj = default;
-                obj = (T)xmlFormat.Deserialize(Fstram);
+                obj = (T)xmlFormat.Deserialize(Fstream);
                 return obj;
             }
         }

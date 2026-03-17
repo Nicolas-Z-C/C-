@@ -2,6 +2,8 @@
 global using System.Text.Json.Serialization;
 global using System.Xml;
 global using System.Xml.Serialization;
+global using Microsoft.EntityFrameworkCore;
+global using Pomelo.EntityFrameworkCore.MySql;
 using C_course.Advancedshit.Delegates;
 using C_course.Advancedshit.Events;
 using C_course.Advancedshit.Multithreading;
@@ -834,7 +836,9 @@ namespace C_course
             //Class libraries 
 
 
-            Libreria1.Class1.HolaMundo();
+            Libreria1.Class2.HolaMundo();
+            //Entity framework
+
         } 
     }
 }

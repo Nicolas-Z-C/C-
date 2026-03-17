@@ -16,7 +16,7 @@ namespace C_course.FileIOserialization
         */
         static void JSON<T>( T obj, string file)
         {
-            File.WriteAllText(file, System.Text.Json.JsonSerializer.Serialize(obj, /*options*/));
+            File.WriteAllText(file, System.Text.Json.JsonSerializer.Serialize(obj));
         }
     }
 }
