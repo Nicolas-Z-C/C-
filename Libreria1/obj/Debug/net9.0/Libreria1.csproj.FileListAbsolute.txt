@@ -1,0 +1,12 @@
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\bin\Debug\net9.0\Libreria1.deps.json
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\bin\Debug\net9.0\Libreria1.dll
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\bin\Debug\net9.0\Libreria1.pdb
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\Libreria1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\Libreria1.AssemblyInfoInputs.cache
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\Libreria1.AssemblyInfo.cs
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\Libreria1.csproj.CoreCompileInputs.cache
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\Libreria1.sourcelink.json
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\Libreria1.dll
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\refint\Libreria1.dll
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\Libreria1.pdb
+C:\Users\ytraz\OneDrive\Desktop\Repos\C#\Libreria1\obj\Debug\net9.0\ref\Libreria1.dll

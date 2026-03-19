@@ -1,6 +1,5 @@
 <Solution>
-  <Folder Name="/Metodos/">
-    <File Path="01C#.cs" />
-  </Folder>
-  <Project Path="C#course.csproj" />
+  <Project Path="C#.csproj" />
+  <Project Path="Libreria1/Libreria1.csproj" />
+  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 </Solution>

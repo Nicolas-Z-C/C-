@@ -25,13 +25,10 @@ namespace C_course
             {
                 case int t when t >= 15:
                     return "Grande";
-                    break;
                 case int t when t < 15:
                     return "Pequeño";
-                    break;
                 default:
                     return "No definido";
-                    break;
             }        
         } 
     }
