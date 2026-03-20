@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/camper/R/C#/Libreria1/Libreria1.csproj": {}
+    "/home/camper/R/C#/C#course.csproj": {}
   },
   "projects": {
-    "/home/camper/R/C#/Libreria1/Libreria1.csproj": {
+    "/home/camper/R/C#/C#course.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/camper/R/C#/Libreria1/Libreria1.csproj",
-        "projectName": "Libreria1",
-        "projectPath": "/home/camper/R/C#/Libreria1/Libreria1.csproj",
+        "projectUniqueName": "/home/camper/R/C#/C#course.csproj",
+        "projectName": "C#course",
+        "projectPath": "/home/camper/R/C#/C#course.csproj",
         "packagesPath": "/home/camper/.nuget/packages/",
-        "outputPath": "/home/camper/R/C#/Libreria1/obj/",
+        "outputPath": "/home/camper/R/C#/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/camper/.nuget/NuGet/NuGet.Config"

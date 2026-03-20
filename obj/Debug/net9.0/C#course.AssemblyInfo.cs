@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Libreria1")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("C#course")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34be106896e8f2dfef2fecca2a9ca440bb52b4be")]
-[assembly: System.Reflection.AssemblyProductAttribute("Libreria1")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Libreria1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e14b74f9fc0441b930e0c1e4b26a61e0884af49")]
+[assembly: System.Reflection.AssemblyProductAttribute("C#course")]
+[assembly: System.Reflection.AssemblyTitleAttribute("C#course")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
